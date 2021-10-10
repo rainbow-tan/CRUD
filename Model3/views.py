@@ -1,4 +1,5 @@
 # -*- encoding=utf-8 -*-
+import datetime
 import json
 import os
 import time
@@ -8,7 +9,6 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 
 from CRUD import Pub
-from CRUD import Tool
 from CRUD import database
 from CRUD.settings import BASE_DIR
 from Model.models import Field1Table
@@ -240,10 +240,7 @@ def import_data(request):  # 导入
     file_string = 'file'
     if file_string in request.FILES:
         file = request.FILES[file_string]
-        # filename = BASE_DIR + '/templates/files/import/data_three_{}.xls'.format(
-        #     time.strftime("%Y%m%d%H%M%S", time.localtime()))
-        now = Tool.now()
-        # filename = os.path.join(BASE_DIR, 'templates/files/import/data_three_{}.xls'.format(now))
+        now = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
         filename = os.path.join(Pub.IMPORT_FOLDER, 'Model3', 'import_{}.xls'.format(now))
         Pub.save_file(filename, file)
         try:
@@ -397,6 +394,8 @@ def network_length_7(request):
     ret = Business.network_length_7(dianlanchangdu)
     data['gudingchangdu'] = ret
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def reality_length_7(request):
     """
     当电缆规定总长度为7.5时
@@ -408,6 +407,8 @@ def reality_length_7(request):
     dangwei = Business.reality_length_7(dianlanchangdu)
     data['dangwei'] = dangwei
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def compensation_7(request):
     """
     当电缆规定总长度为7.5时
@@ -432,6 +433,8 @@ def network_length_10(request):
     ret = Business.network_length_10(dianlanchangdu)
     data['gudingchangdu'] = ret
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def reality_length_10(request):
     """
     当电缆规定总长度为10时
@@ -443,6 +446,8 @@ def reality_length_10(request):
     dangwei = Business.reality_length_10(dianlanchangdu)
     data['dangwei'] = dangwei
     return HttpResponse(json.dumps(data), content_type="application/json")
+
+
 def compensation_10(request):
     """
     当电缆规定总长度为10时

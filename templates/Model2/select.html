@@ -215,7 +215,7 @@
         <!-- 标题 -->
         <div class="row">
             <div class="col-md-12">
-                <h3 class="text-center">移频自动闭塞档案</h3>
+                <h2 class="text-center">移频自动闭塞档案</h2>
             </div>
         </div>
 
@@ -393,11 +393,10 @@
         </div>
 
         <!-- 表格 -->
-        <div class="row">
-            <div class="col-md-12">
-
-                <div id="thead_div">
-                    <table class="table table-bordered  table-hover table-condensed">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-condensed table-hover table-bordered">
+                    <thead>
                         <thead>
                             <tr>
                                 <th><input id="checkboxs" type="checkbox" value="all"></th>
@@ -424,30 +423,24 @@
                                 <th>大修年</th>
                             </tr>
                         </thead>
-                    </table>
-                </div>
-
-                <div id="tbody_div" class="tbody_div">
-                    <table class="table table-bordered  table-hover table-condensed">
-                        <tbody id="tbody">
-                            {% for i in data %}
-                            <tr>
-                                <td><input type="checkbox" value="{{i.0}}"></td>
-                                <td>{{forloop.counter}}</td>
-                                {% for j in i %}
-                                {% if forloop.first %}
-                                {% else %}
-                                <td>{{j}}</td>
-                                {% endif %}
-                                {% endfor %}
-                            </tr>
+                    <tbody id="tbody">
+                        {% for i in data %}
+                        <tr>
+                            <td><input type="checkbox" value="{{i.0}}"></td>
+                            <td>{{forloop.counter}}</td>
+                            {% for j in i %}
+                            {% if forloop.first %}
+                            {% else %}
+                            <td>{{j}}</td>
+                            {% endif %}
                             {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
+
 
         <!-- 分页 -->
         <div class="row">
