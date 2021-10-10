@@ -652,8 +652,66 @@
             </div>
         </div>
 
+        
         <!-- 表格 -->
-        <div class="row">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-condensed table-hover table-bordered">
+                    <thead>
+                        <thead>
+                            <tr >
+                                <th><input id="checkboxs" type="checkbox" value="all"></th>
+                                <th>顺号</th>
+                                <th>线别</th>
+                                <th>综合车间</th>
+                                <th>区间名称</th>
+                                <th>设备名称</th>
+                                <th>公里标</th>
+                                <th>本线高度</th>
+                                <th>距本线中心线距离</th>
+                                <th>距邻线中心线距离</th>
+                                <th>临线高度</th>
+                                <th>线间距</th>
+                                <th style="display: none;">曲线半径</th>
+                                <th style="display: none;">外轨超高</th>
+                                <th style="display: none;">本线曲线内侧</th>
+                                <th style="display: none;">本线曲线外侧</th>
+                                <th style="display: none;">邻线曲线内侧</th>
+                                <th style="display: none;">邻线曲线外侧</th>
+                                <th>本线（标准值）</th>
+                                <th>邻线（标准值）</th>
+                                <th>备注</th>
+                                <th>本线差</th>
+                                <th>邻线差</th>
+                                <th>本线超限</th>
+                                <th>邻线超限</th>
+                                <th>站内区间</th>
+                                <th>参考标准</th>
+                                <th>防撞墙</th>
+                                <th>设备类型</th>
+                                <th>核对日期</th>
+                                <th>核对人</th>
+                            </tr>
+                        </thead>
+                    <tbody id="tbody">
+                        {% for i in data %}
+                        <tr>
+                            <td><input type="checkbox" value="{{i.0}}"></td>
+                            <td>{{forloop.counter}}</td>
+                            {% for j in i %}
+                            {% if forloop.first %}
+                            {% else %}
+                            <td>{{j}}</td>
+                            {% endif %}
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- <div class="row">
             <div class="col-md-12">
                 <div id="thead_div">
                     <table class="table table-bordered  table-hover table-condensed">
@@ -713,7 +771,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- 分页 -->
         <div class="row">
