@@ -46,7 +46,10 @@ def select_html(request):
     select_field50 = Pub.request_data(request, 'GET', 'select_field50', '')
     select_field54 = Pub.request_data(request, 'GET', 'select_field54', '')
 
-    pagesize = int(Pub.request_data(request, 'GET', 'pagesize', PAGESIZE))
+    pagesize = str(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = pagesize.strip()
+    if not pagesize.isdigit():
+        pagesize = Pub.PAGESIZE
     current_page = int(Pub.request_data(request, 'GET', 'current_page', CURRENT_PAGE))
     data_dict['current_field1'] = select_field1
     data_dict['current_field2'] = select_field2

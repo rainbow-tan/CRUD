@@ -13,14 +13,23 @@
 
     <script type="text/javascript">
         $(function () {
+            // 绑定每页显示多少条数据的事件
+            $("#pagesize").bind("keypress", function (event) {
+                if (event.keyCode == "13") {
+                    let size = $.trim($(this).val())
+                    $.func.pagesizeHref(size)
+                }
+            })
+
             // 自定义函数
             $.func = {
 
                 //第几页url
                 currentPageHref: function (current_page) {
+                    let pagesize = $('#pagesize').val()
                     let select_items = [1, 2, 3, 4, 24, 25, 26, 27, 28, 16, 17, 18]
-                    let herf_head = "/Model/select.html?current_page=" + current_page + "&pagesize=" + $
-                        .trim($("#pagesize").text()) + '&over_limit=' + $('#over_limit').val();
+                    let herf_head = "/Model/select.html?current_page=" + current_page + "&pagesize=" + pagesize
+                        + '&over_limit=' + $('#over_limit').val();
                     let herf_body = "";
                     for (let i = 0; i < select_items.length; i++) {
                         let parameter = "&select_field" + select_items[i] + "=" + $("#select_field" +
@@ -710,72 +719,9 @@
                 </table>
             </div>
         </div>
-
-        <!-- <div class="row">
-            <div class="col-md-12">
-                <div id="thead_div">
-                    <table class="table table-bordered  table-hover table-condensed">
-                        <thead>
-                            <tr >
-                                <th><input id="checkboxs" type="checkbox" value="all"></th>
-                                <th>顺号</th>
-                                <th>线别</th>
-                                <th>综合车间</th>
-                                <th>区间名称</th>
-                                <th>设备名称</th>
-                                <th>公里标</th>
-                                <th>本线高度</th>
-                                <th>距本线中心线距离</th>
-                                <th>距邻线中心线距离</th>
-                                <th>临线高度</th>
-                                <th>线间距</th>
-                                <th style="display: none;">曲线半径</th>
-                                <th style="display: none;">外轨超高</th>
-                                <th style="display: none;">本线曲线内侧</th>
-                                <th style="display: none;">本线曲线外侧</th>
-                                <th style="display: none;">邻线曲线内侧</th>
-                                <th style="display: none;">邻线曲线外侧</th>
-                                <th>本线（标准值）</th>
-                                <th>邻线（标准值）</th>
-                                <th>备注</th>
-                                <th>本线差</th>
-                                <th>邻线差</th>
-                                <th>本线超限</th>
-                                <th>邻线超限</th>
-                                <th>站内区间</th>
-                                <th>参考标准</th>
-                                <th>防撞墙</th>
-                                <th>设备类型</th>
-                                <th>核对日期</th>
-                                <th>核对人</th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div id="tbody_div" class="tbody_div">
-                    <table class="table table-bordered  table-hover table-condensed">
-                        <tbody id="tbody">
-                            {% for i in data %}
-                            <tr>
-                                <td><input type="checkbox" value="{{i.0}}"></td>
-                                <td>{{forloop.counter}}</td>
-                                {% for j in i %}
-                                {% if forloop.first %}
-                                {% else %}
-                                <td>{{j}}</td>
-                                {% endif %}
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div> -->
-
         <!-- 分页 -->
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6" style="text-align: center;">
                 <div class=" pagination">
 
                     <div class="btn-group">
@@ -786,17 +732,8 @@
                     <div class="btn-group">
                         <button class="btn btn-default" type="button">显示</button>
                         <div class="btn-group">
-                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="pagesize"
-                                type="button">
-                                {{pagesize}}
-                            </button>
-                            <!-- <ul class="dropdown-menu" id="pagesizechoose" role="menu">
-                                <li><a href="javascript:$.func.pagesizeHref(100)">100</a></li>
-                                <li><a href="javascript:$.func.pagesizeHref(50)">50</a></li>
-                                <li><a href="javascript:$.func.pagesizeHref(20)">20</a></li>
-                            </ul> -->
-                            <input type="text">
-
+                            <input type="text" class="form-control" id="pagesize" style="width: 60px;"
+                                value=" {{pagesize}}">
                         </div>
                         <button class="btn btn-default" type="button">条/页</button>
                     </div>
@@ -810,7 +747,7 @@
                 </div>
             </div>
 
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <nav>
                     <ul class="pagination">
                         <li>

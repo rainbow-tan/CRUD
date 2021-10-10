@@ -84,7 +84,10 @@ def select_html(request):
     changjia = Pub.request_data(request, 'GET', 'changjia', '')
     shiyongshijian = Pub.request_data(request, 'GET', 'shiyongshijian', '')
     fankuiren = Pub.request_data(request, 'GET', 'fankuiren', '')
-    pagesize = int(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = str(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = pagesize.strip()
+    if not pagesize.isdigit():
+        pagesize = Pub.PAGESIZE
     current_page = int(Pub.request_data(request, 'GET', 'current_page', Pub.CURRENT_PAGE))
 
     data_dict['auto_id'] = auto_id

@@ -45,7 +45,13 @@
 
     <script type="text/javascript">
         $(function () {
-
+            // 绑定每页显示多少条数据的事件
+            $("#pagesize").bind("keypress", function (event) {
+                if (event.keyCode == "13") {
+                    let size = $.trim($(this).val())
+                    $.currentpage(size)
+                }
+            })
             // 设置滚动条
             $.set_scroll = function () {
                 $("#tbody_div").scrollTop(10); //控制滚动条下移10px
@@ -104,8 +110,8 @@
             //第几页url
             var id_names = ['xianbie', 'chejian', 'zongcheng', 'bianhao']
             $.currentpage = function (current_page) {
-                let herf_head = "/Model8/select.html?current_page=" + current_page + "&pagesize=" + $.trim(
-                    $("#pagesize").text())
+                let pagesize = $('#pagesize').val()
+                let herf_head = "/Model8/select.html?current_page=" + current_page + "&pagesize=" + pagesize
                 let herf_body = "";
                 $.each(id_names, function (index, item) {
                     let parameter = "&" + item + "=" + $.trim($("#" + item).val());
@@ -340,111 +346,132 @@
             </div>
         </div>
 
+
+
         <!-- 表格 -->
-        <div class="row">
-            <div class="col-md-12">
-                <div id="thead_div">
-                    <table class="table table-bordered  table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <td><input id="checkboxs" type="checkbox" value="all"></td>
-                                <td>序号</td>
-                                <td>检测发现问题日期</td>
-                                <td>线名</td>
-                                <td>综合车间</td>
-                                <td>车站</td>
-                                <td>区段名称</td>
-                                <td>发现问题(不良电容)</td>
-                                <td>行别</td>
-                                <td>区段电容数量</td>
-                                <td>区段载频</td>
-                                <td>处理日期</td>
-                                <td>问题原因</td>
-                                <td>处理情况</td>
-                                <td>上报情况</td>
-                                <td>周期</td>
-                                <td>备注</td>
-                                <td>整改前电流(A)</td>
-                                <td>整改后电流(A)</td>
-                                <td>整改前电压(V)</td>
-                                <td>整改后电压(V)</td>
-                                <td>整改前容值(uf)</td>
-                                <td>整改后容值(uf)</td>
-                                <td>生产厂家</td>
-                                <td>使用时间(年)</td>
-                                <td>反馈人</td>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div id="tbody_div" class="tbody_div">
-                    <table class="table table-bordered  table-hover table-condensed">
-                        <tbody id="tbody">
-                            {% for i in data %}
-                            <tr>
-                                <td><input type="checkbox" value="{{i.0}}"></td>
-                                <td>{{forloop.counter}}</td>
-                                {% for j in i %}
-                                {% if forloop.first %}
-                                {% else %}
-                                <td>{{j}}</td>
-                                {% endif %}
-                                {% endfor %}
-                            </tr>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-condensed table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <td><input id="checkboxs" type="checkbox" value="all"></td>
+                            <td>序号</td>
+                            <td>检测发现问题日期</td>
+                            <td>线名</td>
+                            <td>综合车间</td>
+                            <td>车站</td>
+                            <td>区段名称</td>
+                            <td>发现问题(不良电容)</td>
+                            <td>行别</td>
+                            <td>区段电容数量</td>
+                            <td>区段载频</td>
+                            <td>处理日期</td>
+                            <td>问题原因</td>
+                            <td>处理情况</td>
+                            <td>上报情况</td>
+                            <td>周期</td>
+                            <td>备注</td>
+                            <td>整改前电流(A)</td>
+                            <td>整改后电流(A)</td>
+                            <td>整改前电压(V)</td>
+                            <td>整改后电压(V)</td>
+                            <td>整改前容值(uf)</td>
+                            <td>整改后容值(uf)</td>
+                            <td>生产厂家</td>
+                            <td>使用时间(年)</td>
+                            <td>反馈人</td>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {% for i in data %}
+                        <tr>
+                            <td><input type="checkbox" value="{{i.0}}"></td>
+                            <td>{{forloop.counter}}</td>
+                            {% for j in i %}
+                            {% if forloop.first %}
+                            {% else %}
+                            <td>{{j}}</td>
+                            {% endif %}
                             {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
 
+
         <!-- 分页 -->
-        <br>
         <div class="row">
-            <div class="col-md-12 form-group text-center form-group">
+            <div class="col-md-6" style="text-align: center;">
+                <div class=" pagination">
 
-                <div class="btn-group">
-                    <button class="btn btn-default" type="button">共</button>
-                    <button class="btn btn-default" type="button">{{count}}</button>
-                    <button class="btn btn-default" type="button">条记录</button>
-                </div>
-
-                <div class="btn-group">
-                    <button class="btn btn-default" type="button">显示</button>
-                    <div class="btn-group dropup">
-                        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="pagesize"
-                            value="{{pagesize}}" type="button">
-                            {{pagesize}}
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录
                         </button>
-                        <ul class="dropdown-menu" id="pagesizechoose" role="menu">
-                            <li><a href="javascript: $.pagesize(100)">100</a></li>
-                            <li><a href="javascript: $.pagesize(50)">50</a></li>
-                            <li><a href="javascript: $.pagesize(20)">20</a></li>
-                        </ul>
                     </div>
-                    <button class="btn btn-default" type="button">条/页</button>
-                </div>
 
-                <div class="btn-group">
-                    <a class="btn btn-primary" role="button" href="javascript:$.currentpage(1)">首页</a>
-                    <a class="btn btn-success" role="button" href="javascript:$.currentpage({{previous_page}})">上一页</a>
-                    <a class="btn btn-success" role="button" href="javascript:$.currentpage({{next_page}})">下一页</a>
-                    <a class="btn btn-primary" role="button" href="javascript:$.currentpage({{last_page}})">末页</a>
-                </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button">显示</button>
+                        <div class="btn-group">
+                            <input type="text" class="form-control" id="pagesize" style="width: 60px;"
+                                value=" {{pagesize}}">
+                        </div>
+                        <button class="btn btn-default" type="button">条/页</button>
+                    </div>
 
-                <div class="btn-group">
-                    <button class="btn btn-default" type="button">当前</button>
-                    <button class="btn btn-default" type="button">{{current_page}}</button>
-                    <button class="btn btn-default" type="button">页</button>
-                </div>
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button">当前</button>
+                        <button class="btn btn-default" type="button">{{current_page}}</button>
+                        <button class="btn btn-default" type="button">页</button>
+                    </div>
 
-                <div class="btn-group">
-                    <button class="btn btn-default" type="button">共</button>
-                    <button class="btn btn-default" type="button">{{last_page}}</button>
-                    <button class="btn btn-default" type="button">页</button>
                 </div>
-
             </div>
+
+            <div class="col-md-6">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="javascript:$.currentpage(1)">首页</a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:$.currentpage({{previous_page}})">上一页</a>
+                        </li>
+
+                        <li {% if current_page == "1" %}class="active" {% endif %}>
+                            <a href="javascript:$.currentpage(1)">1</a>
+                        </li>
+
+                        <li {% if current_page == "2" %}class="active" {% endif %}>
+                            <a href="javascript:$.currentpage(2)">2</a>
+                        </li>
+
+                        <li {% if current_page == "3" %}class="active" {% endif %}>
+                            <a href="javascript:$.currentpage(3)">3</a>
+                        </li>
+
+                        <li {% if current_page == "4" %}class="active" {% endif %}>
+                            <a href="javascript:$.currentpage(4)">4</a>
+                        </li>
+
+                        <li {% if current_page == "5" %}class="active" {% endif %}>
+                            <a href="javascript:$.currentpage(5)">5</a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:$.currentpage({{next_page}})">下一页
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:$.currentpage({{last_page}})">末页
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
         </div>
     </div>
 

@@ -57,7 +57,10 @@ def select_html(request):
     dangqianzhuangtai = Pub.request_data(request, 'GET', 'dangqianzhuangtai', '')
     yibiaozhuangtai = Pub.request_data(request, 'GET', 'yibiaozhuangtai', '')
     beizhu = Pub.request_data(request, 'GET', 'beizhu', '')
-    pagesize = int(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = str(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = pagesize.strip()
+    if not pagesize.isdigit():
+        pagesize = Pub.PAGESIZE
     current_page = int(Pub.request_data(request, 'GET', 'current_page', Pub.CURRENT_PAGE))
 
     data_dict['xianbie'] = xianbie
