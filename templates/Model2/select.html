@@ -13,6 +13,16 @@
 
     <script type="text/javascript">
         $(function () {
+            // 绑定每页显示多少条数据的事件
+            $("#pagesize").bind("keypress", function (event) {
+                if (event.keyCode == "13") {
+                    let size = $.trim($(this).val())
+                    $.func.pagesizeHref(size)
+                }
+
+
+            })
+
             // 查区段信息
             $.get_quanduan_info = function () {
                 let xianbie = $.trim($('#add_field1').val())
@@ -100,9 +110,10 @@
 
                 //第几页url
                 currentPageHref: function (current_page) {
+                    let pagesize = $('#pagesize').val()
                     let select_items = [1, 2, 23, 3, 36, 37, 41, 42]
                     let herf_head = "/Model2/select.html?current_page=" + current_page + "&pagesize=" +
-                        $.trim($("#pagesize").text());
+                        pagesize;
                     let herf_body = "";
                     for (let i = 0; i < select_items.length; i++) {
                         let parameter = "&select_field" + select_items[i] + "=" + $("#select_field" +
@@ -444,7 +455,7 @@
 
         <!-- 分页 -->
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6" style="text-align: center;">
                 <div class=" pagination">
 
                     <div class="btn-group">
@@ -455,18 +466,8 @@
                     <div class="btn-group">
                         <button class="btn btn-default" type="button">显示</button>
                         <div class="btn-group">
-                            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="pagesize"
-                                type="button">
-                                {{pagesize}}
-                            </button>
-                            <ul class="dropdown-menu" id="pagesizechoose" role="menu">
-                                <li><a href="javascript:$.func.pagesizeHref(100)">100</a></li>
-                                <li><a href="javascript:$.func.pagesizeHref(50)">50</a></li>
-                                <li><a href="javascript:$.func.pagesizeHref(20)">20</a></li>
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(3)">3</a></li> -->
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(2)">2</a></li> -->
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(1)">1</a></li> -->
-                            </ul>
+                            <input type="text" class="form-control" id="pagesize" style="width: 60px;"
+                                value=" {{pagesize}}">
                         </div>
                         <button class="btn btn-default" type="button">条/页</button>
                     </div>
@@ -480,7 +481,7 @@
                 </div>
             </div>
 
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <nav>
                     <ul class="pagination">
                         <li>
@@ -509,22 +510,6 @@
 
                         <li {% if current_page == "5" %}class="active" {% endif %}>
                             <a href="javascript:$.func.currentPageHref(5)">5</a>
-                        </li>
-
-                        <li {% if current_page == "6" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(6)">6</a>
-                        </li>
-
-                        <li {% if current_page == "7" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(7)">7</a>
-                        </li>
-
-                        <li {% if current_page == "8" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(8)">8</a>
-                        </li>
-
-                        <li {% if current_page == "9" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(9)">9</a>
                         </li>
 
                         <li>

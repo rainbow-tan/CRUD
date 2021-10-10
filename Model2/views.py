@@ -49,7 +49,10 @@ def select_html(request):
     select_field30 = Pub.request_data(request, 'GET', 'select_field30', '')
     select_field45 = Pub.request_data(request, 'GET', 'select_field45', '')
 
-    pagesize = int(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = str(Pub.request_data(request, 'GET', 'pagesize', Pub.PAGESIZE))
+    pagesize = pagesize.strip()
+    if not pagesize.isdigit():
+        pagesize = 50
     current_page = int(Pub.request_data(request, 'GET', 'current_page', Pub.CURRENT_PAGE))
 
     data_dict['current_field1'] = select_field1
@@ -156,7 +159,7 @@ def import_data(request):  # 导入
     if 'file' in request.FILES:
         file = request.FILES['file']
         filename = BASE_DIR + '/templates/files/import/data_two_{}.xls'.format(
-                time.strftime("%Y%m%d%H%M%S", time.localtime()))
+            time.strftime("%Y%m%d%H%M%S", time.localtime()))
         Pub.save_file(filename, file)
         try:
             file_data = Pub.read_xls(filename, 2)
@@ -202,7 +205,7 @@ def check_data(request):
     if 'file' in request.FILES:
         file = request.FILES['file']
         filename = BASE_DIR + '/templates/files/import/data_two_{}.xls'.format(
-                time.strftime("%Y%m%d%H%M%S", time.localtime()))
+            time.strftime("%Y%m%d%H%M%S", time.localtime()))
         Pub.save_file(filename, file)
         try:
             file_data = Pub.read_xls(filename, 2)

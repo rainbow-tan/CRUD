@@ -790,14 +790,13 @@
                                 type="button">
                                 {{pagesize}}
                             </button>
-                            <ul class="dropdown-menu" id="pagesizechoose" role="menu">
+                            <!-- <ul class="dropdown-menu" id="pagesizechoose" role="menu">
                                 <li><a href="javascript:$.func.pagesizeHref(100)">100</a></li>
                                 <li><a href="javascript:$.func.pagesizeHref(50)">50</a></li>
                                 <li><a href="javascript:$.func.pagesizeHref(20)">20</a></li>
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(3)">3</a></li> -->
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(2)">2</a></li> -->
-                                <!-- <li><a href="javascript:$.func.pagesizeHref(1)">1</a></li> -->
-                            </ul>
+                            </ul> -->
+                            <input type="text">
+
                         </div>
                         <button class="btn btn-default" type="button">条/页</button>
                     </div>
@@ -840,22 +839,6 @@
 
                         <li {% if current_page == "5" %}class="active" {% endif %}>
                             <a href="javascript:$.func.currentPageHref(5)">5</a>
-                        </li>
-
-                        <li {% if current_page == "6" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(6)">6</a>
-                        </li>
-
-                        <li {% if current_page == "7" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(7)">7</a>
-                        </li>
-
-                        <li {% if current_page == "8" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(8)">8</a>
-                        </li>
-
-                        <li {% if current_page == "9" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(9)">9</a>
                         </li>
 
                         <li>
