@@ -20,6 +20,11 @@
                     $.func.pagesizeHref(size)
                 }
             })
+            $("#pagesizeBtn").click(function () {
+                let size = $.trim($("#pagesize").val())
+                $.func.pagesizeHref(size)
+            })
+
 
             // 自定义函数
             $.func = {
@@ -28,8 +33,9 @@
                 currentPageHref: function (current_page) {
                     let pagesize = $('#pagesize').val()
                     let select_items = [1, 2, 3, 4, 24, 25, 26, 27, 28, 16, 17, 18]
-                    let herf_head = "/Model/select.html?current_page=" + current_page + "&pagesize=" + pagesize
-                        + '&over_limit=' + $('#over_limit').val();
+                    let herf_head = "/Model/select.html?current_page=" + current_page + "&pagesize=" +
+                        pagesize +
+                        '&over_limit=' + $('#over_limit').val();
                     let herf_body = "";
                     for (let i = 0; i < select_items.length; i++) {
                         let parameter = "&select_field" + select_items[i] + "=" + $("#select_field" +
@@ -234,7 +240,6 @@
             $('#refresh').click(function () {
                 $(window).attr('location', '/Model/select.html/?select_field2=所有')
             })
-
 
             // 设置颜色
             $.set_red = function () {
@@ -622,7 +627,7 @@
 
         <!-- 增删改查按钮组 -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="btn-group">
                     <button class="btn btn-success" type="button" id="refresh">
@@ -657,18 +662,45 @@
                         <span class="glyphicon glyphicon-home"></span> 首页
                     </button>
                 </div>
+            </div>
 
+            <div class="col-md-2" style="width: auto;">
+                <div class="input-group" style="width: 250px;">
+                    <span class="input-group-addon">每页显示条数</span>
+                    <input type="text" class="form-control" id="pagesize" value=" {{pagesize}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning" id="pagesizeBtn" type="button">确定</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;padding: 0 20px;">
+                <div>
+                    <ul class="pager" style="margin: 0px 0px;">
+                        <li class="previous"><a href="javascript:$.func.currentPageHref({{previous_page}})">上一页</a></li>
+                        <li class="previous"><a href="javascript:$.func.currentPageHref({{next_page}})">下一页</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;">
+                <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录</button>
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button">当前</button>
+                    <button class="btn btn-default" type="button">{{current_page}}</button>
+                    <button class="btn btn-default" type="button">页</button>
+                </div>
             </div>
         </div>
 
-        
+
         <!-- 表格 -->
         <div class="row clearfix">
             <div class="col-md-12 column">
                 <table class="table table-condensed table-hover table-bordered">
                     <thead>
                         <thead>
-                            <tr >
+                            <tr>
                                 <th><input id="checkboxs" type="checkbox" value="all"></th>
                                 <th>顺号</th>
                                 <th>线别</th>
@@ -718,78 +750,6 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-        <!-- 分页 -->
-        <div class="row">
-            <div class="col-md-6" style="text-align: center;">
-                <div class=" pagination">
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录
-                        </button>
-                    </div>
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">显示</button>
-                        <div class="btn-group">
-                            <input type="text" class="form-control" id="pagesize" style="width: 60px;"
-                                value=" {{pagesize}}">
-                        </div>
-                        <button class="btn btn-default" type="button">条/页</button>
-                    </div>
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">当前</button>
-                        <button class="btn btn-default" type="button">{{current_page}}</button>
-                        <button class="btn btn-default" type="button">页</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="javascript:$.func.currentPageHref(1)">首页</a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{previous_page}})">上一页</a>
-                        </li>
-
-                        <li {% if current_page == "1" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(1)">1</a>
-                        </li>
-
-                        <li {% if current_page == "2" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(2)">2</a>
-                        </li>
-
-                        <li {% if current_page == "3" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(3)">3</a>
-                        </li>
-
-                        <li {% if current_page == "4" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(4)">4</a>
-                        </li>
-
-                        <li {% if current_page == "5" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(5)">5</a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{next_page}})">下一页
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{last_page}})">末页
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
         </div>
     </div>
 

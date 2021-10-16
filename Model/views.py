@@ -19,6 +19,7 @@ from Model.models import Field26Table
 from Model.models import Field27Table
 from Model.models import Field2Table
 from Model.models import Field3Table
+import logging
 
 COLUMN_NAMES = ['auto_id', 'field1', 'field2', 'field3', 'field4', 'field5',
                 'field6', 'field7', 'field8', 'field9', 'field70', 'field10', 'field11',
@@ -198,7 +199,7 @@ def check_data(request):
             remove_data = Business.remove_index_for_data(sorted_data)
             data_dict['success'] = '查看成功'
         except Exception as e:
-            print('查看文件数据失败:{}'.format(e))
+            logging.exception('查看文件数据失败:{}'.format(e))
             data_dict['success'] = '查看失败->{}'.format(e)
     data_dict['data'] = remove_data
     return render(request, 'Model/import.html', data_dict)

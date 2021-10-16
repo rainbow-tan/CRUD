@@ -52,6 +52,10 @@
                     $.currentpage(size)
                 }
             })
+            $("#pagesizeBtn").click(function () {
+                let size = $.trim($("#pagesize").val())
+                    $.currentpage(size)
+            })
             // 设置滚动条
             $.set_scroll = function () {
                 $("#tbody_div").scrollTop(10); //控制滚动条下移10px
@@ -311,7 +315,7 @@
 
         <!-- 增删改查按钮组 -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="btn-group">
                     <button class="btn btn-primary" onclick="window.location.href = '/Model8/add.html/'" type="button">
@@ -343,6 +347,33 @@
                     </button>
                 </div>
 
+            </div>
+            <div class="col-md-2" style="width: auto;">
+                <div class="input-group" style="width: 250px;">
+                    <span class="input-group-addon">每页显示条数</span>
+                    <input type="text" class="form-control" id="pagesize" value=" {{pagesize}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning" id="pagesizeBtn" type="button">确定</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;padding: 0 20px;">
+                <div>
+                    <ul class="pager" style="margin: 0px 0px;">
+                        <li class="previous"><a href="javascript:$.currentpage({{previous_page}})">上一页</a></li>
+                        <li class="previous"><a href="javascript:$.currentpage({{next_page}})">下一页</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;">
+                <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录</button>
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button">当前</button>
+                    <button class="btn btn-default" type="button">{{current_page}}</button>
+                    <button class="btn btn-default" type="button">页</button>
+                </div>
             </div>
         </div>
 
@@ -402,7 +433,7 @@
 
 
         <!-- 分页 -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6" style="text-align: center;">
                 <div class=" pagination">
 
@@ -472,7 +503,7 @@
                 </nav>
             </div>
 
-        </div>
+        </div> -->
     </div>
 
 </body>

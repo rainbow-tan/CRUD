@@ -20,6 +20,10 @@
                     $.func.pagesizeHref(size)
                 }
             })
+            $("#pagesizeBtn").click(function () {
+                let size = $.trim($("#pagesize").val())
+                $.func.pagesizeHref(size)
+            })
 
             // 查区段信息
             $.get_quanduan_info = function () {
@@ -342,9 +346,12 @@
 
         <!-- 增删改查按钮组 -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
 
                 <div class="btn-group">
+                    <button class="btn btn-success" type="button" id="refresh">
+                        <span class="glyphicon glyphicon-search"></span> 查询所有数据
+                    </button>
                     <button class="btn btn-primary" data-target="#addModal" data-toggle="modal" type="button">
                         <span class="glyphicon glyphicon-plus"></span> 添加
                     </button>
@@ -370,9 +377,37 @@
                     <button class="btn btn-info" onclick="window.open('/Model4/select.html','_blank');" type="button">
                         <span class="glyphicon glyphicon-gift"></span> 详情
                     </button>
-                    <button class="btn btn-primary" onclick="window.location='/index.html/?index=4'" type="button">
+                    <button class="btn btn-primary" onclick="window.location='/index.html/?index=1'" type="button">
                         <span class="glyphicon glyphicon-home"></span> 首页
                     </button>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;">
+                <div class="input-group" style="width: 250px;">
+                    <span class="input-group-addon">每页显示条数</span>
+                    <input type="text" class="form-control" id="pagesize" value=" {{pagesize}}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-warning" id="pagesizeBtn" type="button">确定</button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;padding: 0 20px;">
+                <div>
+                    <ul class="pager" style="margin: 0px 0px;">
+                        <li class="previous"><a href="javascript:$.func.currentPageHref({{previous_page}})">上一页</a></li>
+                        <li class="previous"><a href="javascript:$.func.currentPageHref({{next_page}})">下一页</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-2" style="width: auto;">
+                <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录</button>
+                <div class="btn-group">
+                    <button class="btn btn-default" type="button">当前</button>
+                    <button class="btn btn-default" type="button">{{current_page}}</button>
+                    <button class="btn btn-default" type="button">页</button>
                 </div>
             </div>
         </div>
@@ -449,78 +484,6 @@
         </div>
 
 
-        <!-- 分页 -->
-        <div class="row">
-            <div class="col-md-6" style="text-align: center;">
-                <div class=" pagination">
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">共<b>{{count}}</b>条记录
-                        </button>
-                    </div>
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">显示</button>
-                        <div class="btn-group">
-                            <input type="text" class="form-control" id="pagesize" style="width: 60px;"
-                                value=" {{pagesize}}">
-                        </div>
-                        <button class="btn btn-default" type="button">条/页</button>
-                    </div>
-
-                    <div class="btn-group">
-                        <button class="btn btn-default" type="button">当前</button>
-                        <button class="btn btn-default" type="button">{{current_page}}</button>
-                        <button class="btn btn-default" type="button">页</button>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="javascript:$.func.currentPageHref(1)">首页</a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{previous_page}})">上一页</a>
-                        </li>
-
-                        <li {% if current_page == "1" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(1)">1</a>
-                        </li>
-
-                        <li {% if current_page == "2" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(2)">2</a>
-                        </li>
-
-                        <li {% if current_page == "3" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(3)">3</a>
-                        </li>
-
-                        <li {% if current_page == "4" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(4)">4</a>
-                        </li>
-
-                        <li {% if current_page == "5" %}class="active" {% endif %}>
-                            <a href="javascript:$.func.currentPageHref(5)">5</a>
-                        </li>
-
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{next_page}})">下一页
-                            </a>
-                        </li>
-                        <li>
-                            <a href="javascript:$.func.currentPageHref({{last_page}})">末页
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
 
     </div>
 
