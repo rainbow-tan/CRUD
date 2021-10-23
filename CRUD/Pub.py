@@ -10,7 +10,7 @@ from xlutils.copy import copy
 
 from CRUD.settings import BASE_DIR
 
-PAGESIZE = 50  # 默认每页显示记录条数
+PAGESIZE = 10  # 默认每页显示记录条数
 CURRENT_PAGE = 1  # 默认显示第一页
 IMPORT_FOLDER = os.path.join(BASE_DIR, 'templates/files/import')  # 导入文件保存位置
 EXPORT_FOLDER = os.path.join(BASE_DIR, 'templates/files/export')  # 导出文件保存位置
