@@ -19,10 +19,10 @@
         }
 
         /* 固定表格布局，取消外边距 */
-        .table {
+        /* .table {
             margin-bottom: -1px;
             table-layout: fixed;
-        }
+        } */
 
         /* 水平垂直居中 */
         td,
@@ -55,7 +55,7 @@
             })
             $("#pagesizeBtn").click(function () {
                 let size = $.trim($("#pagesize").val())
-                    $.pagesize(size)
+                $.pagesize(size)
             })
 
 
@@ -285,7 +285,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">生产厂家</div>
                             <input class="form-control" id="changjia" name="changjia" type="text" value="{{changjia}}">
@@ -316,14 +316,14 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">出产编号</div>
                             <input class="form-control" id="bianhao" name="bianhao" type="text" value="{{bianhao}}">
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">规格型号</div>
                             <input class="form-control" id="guige" name="guige" type="text" value="{{guige}}">
@@ -458,7 +458,7 @@
                             <td>备注</td>
                         </tr>
                     </thead>
-                    <tbody id="tbody">
+                    <tbody >
                         {% for i in data %}
                         <tr>
                             <td><input type="checkbox" value="{{i.0}}"></td>

@@ -12,7 +12,11 @@
     <script src="/static/js/pub_js.js" type="text/javascript"></script>
     <link href="/static/zui-1.9.2-dist/dist/css/zui.css" rel="stylesheet">
     <script src="/static/zui-1.9.2-dist/dist/js/zui.js"></script>
-
+<style>
+    th{
+        text-align: center;
+    }
+</style>
     <script type="text/javascript">
         $(function () {
             // 绑定每页显示多少条数据的事件
@@ -465,8 +469,8 @@
             <div class="col-md-12 column">
                 <table class="table table-condensed table-hover table-bordered">
                     <thead>
-                        <thead>
-                            <tr>
+                        <thead >
+                            <tr >
                                 <th><input id="checkboxs" type="checkbox" value="all"></th>
                                 <th>顺号</th>
                                 <th>电务段名称</th>
@@ -475,16 +479,16 @@
                                 <th>行别</th>
                                 <th>自动闭塞制式</th>
                                 <th>轨道电路制式</th>
-                                <th>自闭区间</th>
+                                <th style="width: 180px;">自闭区间</th>
                                 <th>所属车站</th>
-                                <th>车站联锁制式</th>
+                                <th style="width: 40px;">车站联锁制式</th>
                                 <th>区间轨道电路名称</th>
-                                <th>站联区段</th>
+                                <th style="width: 40px;">站联区段</th>
                                 <th>标称载频</th>
                                 <th>区段长度（m）</th>
                                 <th>电容数量</th>
                                 <th>防护信号机名称</th>
-                                <th>是否容许信号</th>
+                                <th style="width: 40px;">是否容许信号</th>
                                 <th>方向电路制式</th>
                                 <th>发送冗余方式</th>
                                 <th>接收冗余方式</th>
