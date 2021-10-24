@@ -11,7 +11,16 @@
 
     <link href="/static/zui-1.9.2-dist/dist/css/zui.css" rel="stylesheet">
     <script src="/static/zui-1.9.2-dist/dist/js/zui.js"></script>
+    <style>
+        td {
+            text-align: center;
+        }
 
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+    </style>
     <style>
         /* 表格字体且换行 */
         table {
@@ -251,14 +260,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 200px;">
                         <div class="input-group">
                             <div class="input-group-addon">问题原因</div>
                             <input class="form-control" id="yuanying" name="yuanying" type="text" value="{{yuanying}}">
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group" style="width: 200px;">
                         <div class="input-group">
                             <div class="input-group-addon">上报情况</div>
                             <input class="form-control" id="shangbaoqingkuang" name="shangbaoqingkuang" type="text" value="{{shangbaoqingkuang}}">
@@ -295,7 +304,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group" style="width: 200px;">
                         <div class="input-group">
                             <div class="input-group-addon">区段名称</div>
                             <input class="form-control" id="quduan" name="quduan" type="text" value="{{quduan}}">

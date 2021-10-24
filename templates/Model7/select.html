@@ -12,6 +12,16 @@
     <link href="/static/zui-1.9.2-dist/dist/css/zui.css" rel="stylesheet">
     <script src="/static/zui-1.9.2-dist/dist/js/zui.js"></script>
     <style>
+        td {
+            text-align: center;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+    </style>
+    <style>
         /* 表格字体且换行 */
         table {
             font-size: 8px;
@@ -285,14 +295,14 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">生产厂家</div>
                             <input class="form-control" id="changjia" name="changjia" type="text" value="{{changjia}}">
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">使用地点</div>
                             <select class="form-control" id="didian" name="didian">
@@ -307,7 +317,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">当前状态</div>
                             <input class="form-control" id="dangqianzhuangtai" name="dangqianzhuangtai" type="text"
@@ -316,14 +326,14 @@
                     </div>
 
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">出产编号</div>
                             <input class="form-control" id="bianhao" name="bianhao" type="text" value="{{bianhao}}">
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 140px;">
                         <div class="input-group">
                             <div class="input-group-addon">规格型号</div>
                             <input class="form-control" id="guige" name="guige" type="text" value="{{guige}}">
