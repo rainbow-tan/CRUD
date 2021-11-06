@@ -27,8 +27,9 @@ def login_html(request):
 
 
 def debug_html(request):
+    return render(request, 'base.html')
+def debug_html1(request):
     return render(request, 'debug.html')
-
 
 def login(request):
     username = request.POST.get("username").lower()

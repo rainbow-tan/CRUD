@@ -10,6 +10,7 @@ urlpatterns = [
     path('login.html/', views.login_html),
     path('index.html/', views.index_html),
     path('debug.html/', views.debug_html),
+    path('debug1.html/', views.debug_html1),
     path('debug/', views.debug),
     path('login/', views.login),
 

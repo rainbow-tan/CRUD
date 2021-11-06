@@ -1,3 +1,4 @@
+from functools import wraps
 import os
 import time
 from datetime import datetime
@@ -17,6 +18,19 @@ EXPORT_FOLDER = os.path.join(BASE_DIR, 'templates/files/export')  # 导出文件
 STATIC_EXPORT_FOLDER = '/static/files/export'  # 前端接受导出文件url
 EXPORT_TEMPLATE_FOLDER = os.path.join(BASE_DIR, 'templates/ExportTemplate')  # 导出模板文件保存位置
 SAVE_FOLDER_SIZE = 1024 * 1024 * 3  # 默认保存大小
+
+
+def use_time(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        duration_time = end_time - start_time
+        print("函数[%s]执行时间: %s seconds" % (func.__name__, duration_time))
+        return result
+
+    return wrapper
 
 
 def get_time():

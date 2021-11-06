@@ -1,5 +1,6 @@
 # -*- encoding=utf-8 -*-
 import json
+import logging
 import time
 
 from django.http import HttpResponse
@@ -8,6 +9,7 @@ from django.shortcuts import render
 
 from CRUD import Pub
 from CRUD import database
+from CRUD.Pub import use_time
 from CRUD.settings import BASE_DIR
 from Model import Business
 from Model import DB
@@ -19,7 +21,6 @@ from Model.models import Field26Table
 from Model.models import Field27Table
 from Model.models import Field2Table
 from Model.models import Field3Table
-import logging
 
 COLUMN_NAMES = ['auto_id', 'field1', 'field2', 'field3', 'field4', 'field5',
                 'field6', 'field7', 'field8', 'field9', 'field70', 'field10', 'field11',
@@ -32,6 +33,7 @@ def import_html(request):
     return render(request, 'Model/import.html')
 
 
+@use_time
 def select_html(request):
     data_dict = dict()
 
@@ -190,7 +192,7 @@ def check_data(request):
     if 'file' in request.FILES:
         file = request.FILES['file']
         filename = BASE_DIR + '/templates/files/import/data_{}.xls'.format(
-                time.strftime("%Y%m%d%H%M%S", time.localtime()))
+            time.strftime("%Y%m%d%H%M%S", time.localtime()))
         Pub.save_file(filename, file)
         try:
             file_data = Pub.read_xls(filename, 5)
@@ -211,7 +213,7 @@ def import_data(request):  # 导入
     if 'file' in request.FILES:
         file = request.FILES['file']
         filename = BASE_DIR + '/templates/files/import/data_{}.xls'.format(
-                time.strftime("%Y%m%d%H%M%S", time.localtime()))
+            time.strftime("%Y%m%d%H%M%S", time.localtime()))
         Pub.save_file(filename, file)
         try:
             file_data = Pub.read_xls(filename, 5)

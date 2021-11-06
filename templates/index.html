@@ -32,9 +32,9 @@
         // 列表选中添加active类
         $("#nav_ul > li>a").click(function () {
             // $("#nav_ul > li").removeClass("active")
-            $("#nav_ul > li>a").css('background-color','lightblue')
+            $("#nav_ul > li>a").css('background-color', 'bisque')
             // alert($(this).children)
-            $(this).css('background-color','blue')
+            $(this).css('background-color', 'gold')
         })
 
         //获取url参数
@@ -132,7 +132,8 @@
         <div class="row">
             <div class="col-md-12 column">
                 <ul class="nav  nav-pills nav-justified " id="nav_ul">
-                    <li ><a style="background-color: lightblue;" href="/Model5/zhuye.html" id="index_5" target="frame">年度测试工作任务表</a></li>
+                    <li><a style="background-color: lightblue;" href="/Model5/zhuye.html" id="index_5"
+                            target="frame">年度测试工作任务表</a></li>
                     <li><a href="/Model6/zhuye.html/" id="index_6" target="frame">年度维修工作任务表</a></li>
                     <li><a href="/Model/select.html/" id="index_1" target="frame">信号设备限界档案</a></li>
                     <li><a href="/Model3/select.html/" id="index_3" target="frame">ZPW-2000轨道参数表</a></li>
@@ -180,24 +181,35 @@
     </div>
     <script>
         // 计算页面的实际高度，iframe自适应会用到
-        function calcPageHeight(doc) {
-            var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
-            var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
-            var height = Math.max(cHeight, sHeight)
-            return height
+        // function calcPageHeight(doc) {
+        //     var cHeight = Math.max(doc.body.clientHeight, doc.documentElement.clientHeight)
+        //     var sHeight = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight)
+        //     var height = Math.max(cHeight, sHeight)
+        //     return height
+        // }
+        // //根据ID获取iframe对象
+        // var ifr = document.getElementById('frame')
+        // ifr.onload = function () {
+        //     //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
+        //     ifr.style.height = '0px';
+        //     var iDoc = ifr.contentDocument || ifr.document
+        //     var height = calcPageHeight(iDoc)
+        //     if (height < 850) {
+        //         height = 850;
+        //     }
+        //     ifr.style.height = height + 'px'
+        // }
+
+        function reinitIframe() {
+            var iframe = document.getElementById("frame");
+            try {
+                var bHeight = iframe.contentWindow.document.body.scrollHeight;
+                var dHeight = iframe.contentWindow.document.documentElement.scrollHeight;
+                var height = Math.max(bHeight, dHeight);
+                iframe.height = height;
+            } catch (ex) {}
         }
-        //根据ID获取iframe对象
-        var ifr = document.getElementById('frame')
-        ifr.onload = function () {
-            //解决打开高度太高的页面后再打开高度较小页面滚动条不收缩
-            ifr.style.height = '0px';
-            var iDoc = ifr.contentDocument || ifr.document
-            var height = calcPageHeight(iDoc)
-            if (height < 850) {
-                height = 850;
-            }
-            ifr.style.height = height + 'px'
-        }
+        window.setInterval("reinitIframe()", 200);
     </script>
 </body>
 
