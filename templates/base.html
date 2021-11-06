@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础文件</title>
+
+    <script src="/static/js2/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" href="/static/css2/zui.css">
+    <script src="/static/js2/zui.js"></script>
+
+    <link rel="stylesheet" href="/static/css2/chosen.css">
+    <script src="/static/js2/chosen.js"></script>
+</head>
+<style>
+    /* 添加下边框线 */
+    .myDividing {
+        padding-bottom: 9px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    /* 一直显示number输入框的上下箭头 */
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        opacity: 1;
+    }
+</style>
+<script>
+    $(function () {
+        $('select.chosen-select').chosen({
+            no_results_text: '没有找到', // 当检索时没有找到匹配项时显示的提示文本
+            disable_search_threshold: 1, // 10 个以下的选择项则不显示检索框
+            search_contains: true // 从任意位置开始检索
+        });
+    })
+</script>
+
+<body>
+
+    <div class="container-fluid">
+        <!-- 标题 -->
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <h1 class="header-dividing">
+                    {% block title %}
+                    基类标题
+                    {% endblock %}
+                </h1>
+            </div>
+        </div>
+
+        <!-- 查询表单 -->
+        <div class="row clearfix myDividing">
+            <div class="col-md-12">
+                <form class="form-inline has-success" action="" method="get">
+                    {% block filter %}
+                    <div class="form-group has-success">
+                        <label for="example1">字段1</label>
+                        <input type="text" class="form-control" id="example1" name="example1" placeholder="字段1">
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="example2">字段2</label>
+                        <input type="text" class="form-control" id="example2" placeholder="字段2">
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="example3">Number类型</label>
+                        <input type="number" class="form-control" id="example3" placeholder="Number类型">
+                    </div>
+
+                    <div class="form-group has-success">
+                        <label for="example3">选择宠物</label>
+                    </div>
+                    <div class="form-group">
+                        <div style="width: 200px;">
+                            <select data-placeholder="选择一个宠物.." class="chosen-select form-control" tabindex="2"
+                                data-max_drop_width="200">
+                                <option value=""></option>
+                                <option value="cat">小猫</option>
+                                <option value="fish">金鱼</option>
+                                <option value="dragon">龙</option>
+                                <option value="mammoth">猛犸</option>
+                                <option value="gollum">咕噜咕噜咕噜咕噜咕噜咕噜咕噜</option>
+                            </select>
+                        </div>
+                    </div>
+                    {% endblock %}
+
+                    <button class="btn btn-info"><i class="icon icon-times"></i>清空</button>
+                    <button type="submit" class="btn btn-primary"><i class="icon icon-search"></i>搜索</button>
+                </form>
+            </div>
+        </div>
+        <br>
+        <div class="row clearfix myDividing">
+            <div class="col-md-6 column">
+                <div class="btn-toolbar">
+                    <div class="btn-group">
+                        <button class="btn btn-success" type="button"><i class="icon icon-plus"></i>增加</button>
+                        <button class="btn btn-success" type="button"><i class="icon icon-paint-brush"></i>修改</button>
+                        <button class="btn btn-success" type="button"><i class="icon icon-minus"></i>删除</button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-warning" type="button"><i class="icon icon-upload"></i>导入</button>
+                        <button class="btn btn-warning" type="button"><i class="icon icon-download"></i>导出</button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-primary" type="button"><i class="icon icon-expand-full"></i>详情</button>
+                        <button class="btn btn-primary" type="button"><i class="icon icon-home"></i>首页</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 column text-right">
+                <div style="width: 180px;display: inline-block;">
+                    <div class="input-control has-label-left-sm has-label-right-sm">
+                        <input id="inputPasswordExample2" type="number" min="0" class="form-control" placeholder="">
+                        <label for="inputPasswordExample2" class="input-control-label-left text-red">显示</label>
+                        <label for="inputPasswordExample2"
+                            class="input-control-label-right text-right text-success">确定</label>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button class="btn btn-success" type="button"><i class="icon icon-arrow-left"></i>上一页</button>
+                    <button class="btn btn-success" type="button"><i
+                            class="icon icon-linux"></i>第1/100页,共500条记录</button>
+                    <button class="btn btn-success" type="button"><i class="icon icon-arrow-right"></i>下一页</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <table class="table table-striped table-hover table-bordered table-auto text-center table-condensed">
+                    <thead>
+                        <tr>
+                            <th>...</th>
+                            <th>...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="success">
+                            <th>...</th>
+                            <th>...</th>
+                        </tr>
+                        <tr class="danger">
+                            <th>...</th>
+                            <th>...</th>
+                        </tr>
+                        <tr class="warning">
+                            <th>...</th>
+                            <th>...</th>
+                        </tr>
+                        <tr class="active">
+                            <th>...</th>
+                            <th>...</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
