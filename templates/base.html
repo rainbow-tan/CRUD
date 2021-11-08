@@ -26,8 +26,7 @@
     input[type=number]::-webkit-inner-spin-button,
     input[type=number]::-webkit-outer-spin-button {
         opacity: 1;
-        height: 50px
-        ;
+        height: 50px;
     }
 </style>
 <script>
@@ -37,6 +36,16 @@
             disable_search_threshold: 1, // 10 个以下的选择项则不显示检索框
             search_contains: true // 从任意位置开始检索
         });
+    })
+</script>
+
+<script>
+    // 框架自定义函数,非业务函数
+    $(function () {
+        // 清空查询表单input框
+        $("#clearBtn").click(function () {
+            $("#selectForm > input").text("")
+        })
     })
 </script>
 
@@ -57,7 +66,7 @@
         <!-- 查询表单 -->
         <div class="row clearfix myDividing">
             <div class="col-md-12">
-                <form class="form-inline has-success" action="" method="get">
+                <form class="form-inline has-success" action="" method="get" id="selectForm">
                     {% block filter %}
                     <div class="form-group has-success">
                         <label for="example1">字段1</label>
@@ -92,7 +101,7 @@
                     </div>
                     {% endblock %}
 
-                    <button class="btn btn-info"><i class="icon icon-times"></i>清空</button>
+                    <button class="btn btn-info" id="clearBtn"><i class="icon icon-times"></i>清空</button>
                     <button type="submit" class="btn btn-primary"><i class="icon icon-search"></i>搜索</button>
                 </form>
             </div>
@@ -113,6 +122,10 @@
                     <div class="btn-group">
                         <button class="btn btn-primary" type="button"><i class="icon icon-expand-full"></i>详情</button>
                         <button class="btn btn-primary" type="button"><i class="icon icon-home"></i>首页</button>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-info" type="button"><i class="icon icon-smile"></i>使用帮助</button>
+
                     </div>
                 </div>
             </div>
