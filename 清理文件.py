@@ -50,8 +50,6 @@ if __name__ == '__main__':
     for i in a:
         if i.endswith("__pycache__"):
             delete_folder(i)
-        if i.endswith(".idea"):
-            delete_folder(i)
     for j in b:
         if j.endswith('.pyc'):
             delete_file(j)

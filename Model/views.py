@@ -97,6 +97,7 @@ def select_html(request):
     remove_sort_filter_data = Business.remove_index_for_data(sort_filter_data)  # 移除四个不显示字段
 
     database.paging(remove_sort_filter_data, pagesize, current_page, data_dict)  # 分页
+    print("")
     database.export(sort_filter_data, data_dict, u'限界导出模板.xls', '')  # 导出
     return render(request, 'Model/select.html', data_dict)
 

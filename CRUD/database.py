@@ -61,6 +61,7 @@ def paging(db_data, pagesize, current_page, data_dict):
         next_page = max_number
 
     # 传递给前端的数据
+    print(show_data)
     data_dict['data'] = show_data
     data_dict['count'] = len(db_data)
     data_dict['pagesize'] = str(pagesize)
